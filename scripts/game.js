@@ -14,3 +14,6 @@ const  COL = 3;
 const  ROW = 3;
 const game = new Game(ROW,COL);
 game.initializeBoard();
+function play(position){
+  alert(position);
+}
