@@ -7,6 +7,14 @@ function Game(numRow,numCol) {
       board[i] = new Array(col).fill(" ");
     }
   };
+  
+  this.cleanBoard = function(){
+    let cells = document.getElementsByTagName('button');
+    for(var i=0; i<cells.length; i++) {
+      board[i%col].fill(" ");
+      cells[i].innerHTML = " ";
+    }
+  };
 }
 
 
@@ -15,5 +23,5 @@ const  ROW = 3;
 const game = new Game(ROW,COL);
 game.initializeBoard();
 function play(position){
-  alert(position);
+  game.cleanBoard();
 }
