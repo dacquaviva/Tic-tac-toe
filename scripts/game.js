@@ -33,6 +33,18 @@ function Game(numRow,numCol) {
     }
   };
 
+  this.setSymbol = function(position,symbol){
+  if(board[Math.floor(position/row)][position%col] === " "){
+     board[Math.floor(position/row)][position%col] = symbol;
+
+  }else {
+    document.getElementById(position).style.backgroundColor="red";
+    setTimeout(function(){ document.getElementById(position).style.backgroundColor=""; }, 500);
+    numSymbol--;
+
+  }
+};
+
 }
 
 
@@ -43,5 +55,5 @@ let symbol = " ";
 game.initializeBoard();
 function play(position){
   symbol = game.getSymbol();
-  alert(symbol);
+  game.setSymbol(position,symbol);
 }
