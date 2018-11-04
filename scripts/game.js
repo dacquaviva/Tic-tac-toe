@@ -53,6 +53,10 @@ function Game(numRow,numCol) {
     }
   };
 
+  this.checkWinner = function(){
+    
+  }
+
 }
 
 
@@ -66,6 +70,7 @@ function play(position){
   try{
     game.setSymbol(position,symbol);
     game.drawTable();
+    game.checkWinner();
   }catch(err){
     alert(err);
   }
