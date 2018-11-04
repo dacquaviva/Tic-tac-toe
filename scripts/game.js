@@ -16,6 +16,7 @@ function Game(numRow,numCol) {
       board[i%col].fill(" ");
       cells[i].innerHTML = " ";
     }
+    numSymbol = 0;
   };
 
   this.getSymbol = function(){
@@ -44,7 +45,7 @@ function Game(numRow,numCol) {
 
     }
   };
-  
+
   this.drawTable = function(){
     let cells = document.getElementsByTagName('button');
     for(var i=0; i<cells.length; i++) {
