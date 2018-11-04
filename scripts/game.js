@@ -10,7 +10,7 @@ function Game(numRow,numCol) {
     }
   };
 
-  this.cleanBoard = function(){
+  let cleanBoard = function(){
     let cells = document.getElementsByTagName('button');
     for(var i=0; i<cells.length; i++) {
       board[i%col].fill(" ");
@@ -54,8 +54,38 @@ function Game(numRow,numCol) {
   };
 
   this.checkWinner = function(){
-    
-  }
+
+    win = "";
+    seqSymbols = symbol + symbol + symbol;
+
+    //check rows
+    for(var i=0; i< row; i++){
+      for (var j = 0; j < col; j++) {
+        win = win + board[i][j];
+      }
+      if(win === seqSymbols){
+        for (var k = 0; k < col; k++) {
+          position = (i*row) + k
+          document.getElementById(position).style.backgroundColor="00FF00";
+        }
+        setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+      }
+      win = "";
+    }
+
+
+    //check columns
+
+
+    // check first diagona
+
+
+    // check second diagonal
+
+
+    // check draw
+
+  };
 
 }
 
