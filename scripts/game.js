@@ -137,7 +137,9 @@ function Game(numRow,numCol) {
 
 
     // check draw
-
+    if(numSymbol === row*col  && !matchWon){
+      setTimeout(function(){cleanBoard(); alert("it was a draw");}, 500);
+    }
   };
 
 }
