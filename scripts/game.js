@@ -42,7 +42,7 @@ function Game(numRow,numCol) {
       document.getElementById(position).style.backgroundColor="red";
       setTimeout(function(){ document.getElementById(position).style.backgroundColor=""; }, 500);
       numSymbol--;
-
+      throw new Error('Posizion already used');
     }
   };
 
@@ -63,6 +63,11 @@ let symbol = " ";
 game.initializeBoard();
 function play(position){
   symbol = game.getSymbol();
-  game.setSymbol(position,symbol);
-  game.drawTable();
+  try{
+    game.setSymbol(position,symbol);
+    game.drawTable();
+  }catch(err){
+    alert(err);
+  }
+
 }
