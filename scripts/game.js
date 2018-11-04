@@ -69,7 +69,7 @@ function Game(numRow,numCol) {
         if(win === seqSymbols){
           for (var k = 0; k < col; k++) {
             position = (i*row) + k
-            document.getElementById(position).style.backgroundColor="00FF00";
+            document.getElementById(position).style.backgroundColor="green";
           }
           setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
           matchWon = true;
@@ -89,7 +89,7 @@ function Game(numRow,numCol) {
         if(win === seqSymbols){
           for (var k = 0; k < col; k++) {
             position = (k*row) + i;
-            document.getElementById(position).style.backgroundColor="00FF00";
+            document.getElementById(position).style.backgroundColor="green";
           }
           setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
           matchWon = true;
@@ -107,7 +107,7 @@ function Game(numRow,numCol) {
       if(win === seqSymbols){
         for (var k = 0; k < col; k++) {
           position = (k*row) + k;
-          document.getElementById(position).style.backgroundColor="00FF00";
+          document.getElementById(position).style.backgroundColor="green";
         }
         setTimeout(function(){cleanBoard();alert(symbol + " symbol has won");}, 500);
         matchWon = true;
@@ -127,7 +127,7 @@ function Game(numRow,numCol) {
       if(win === seqSymbols){
         for (var k = 0; k < col; k++) {
           position = (k + k) + (row - 1);
-          document.getElementById(position).style.backgroundColor="00FF00";
+          document.getElementById(position).style.backgroundColor="green";
         }
         setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
         matchWon = true;
