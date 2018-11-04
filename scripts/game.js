@@ -25,8 +25,8 @@ function Game(numRow,numCol) {
 
   let nextSymbol = function(){
     if(numSymbol % 2 === 0){
-        numSymbol++;
-        symbol = "X"
+      numSymbol++;
+      symbol = "X"
     }else {
       numSymbol++;
       symbol = "O"
@@ -34,16 +34,23 @@ function Game(numRow,numCol) {
   };
 
   this.setSymbol = function(position,symbol){
-  if(board[Math.floor(position/row)][position%col] === " "){
-     board[Math.floor(position/row)][position%col] = symbol;
+    if(board[Math.floor(position/row)][position%col] === " "){
+      board[Math.floor(position/row)][position%col] = symbol;
 
-  }else {
-    document.getElementById(position).style.backgroundColor="red";
-    setTimeout(function(){ document.getElementById(position).style.backgroundColor=""; }, 500);
-    numSymbol--;
+    }else {
+      document.getElementById(position).style.backgroundColor="red";
+      setTimeout(function(){ document.getElementById(position).style.backgroundColor=""; }, 500);
+      numSymbol--;
 
-  }
-};
+    }
+  };
+  
+  this.drawTable = function(){
+    let cells = document.getElementsByTagName('button');
+    for(var i=0; i<cells.length; i++) {
+      cells[i].innerHTML = board[Math.floor(i/row)][i%col];
+    }
+  };
 
 }
 
@@ -56,4 +63,5 @@ game.initializeBoard();
 function play(position){
   symbol = game.getSymbol();
   game.setSymbol(position,symbol);
+  game.drawTable();
 }
