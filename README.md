@@ -2,8 +2,11 @@
 Tic-Tac-Toe Data Assembler for a technical assignment by Webbio.
 
 For the implementation i used the following languages:
+
 -HTML: It contains the board's structure simulated by a button table. 
+
 -CSS : It define few styles proprerty.
+
 -JavaScript : It contains all the logical part. There is a class named Game which implements all the behavios(methods) of a tic tac toe game.
 
 How does it flow?
