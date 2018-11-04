@@ -58,37 +58,44 @@ function Game(numRow,numCol) {
 
     win = "";
     seqSymbols = symbol + symbol + symbol;
+    matchWon = false;
 
     //check rows
-    for(var i=0; i< row; i++){
-      for (var j = 0; j < col; j++) {
-        win = win + board[i][j];
-      }
-      if(win === seqSymbols){
-        for (var k = 0; k < col; k++) {
-          position = (i*row) + k
-          document.getElementById(position).style.backgroundColor="00FF00";
+    if(!matchWon){
+      for(var i=0; i< row; i++){
+        for (var j = 0; j < col; j++) {
+          win = win + board[i][j];
         }
-        setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+        if(win === seqSymbols){
+          for (var k = 0; k < col; k++) {
+            position = (i*row) + k
+            document.getElementById(position).style.backgroundColor="00FF00";
+          }
+          setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+        }
+        win = "";
       }
-      win = "";
     }
+
 
 
     //check columns
-    for(var i=0; i< col; i++){ // cols
-      for (var j = 0; j < row; j++) {
-        win = win + board[j][i];
-      }
-      if(win === seqSymbols){
-        for (var k = 0; k < col; k++) {
-          position = (k*row) + i;
-          document.getElementById(position).style.backgroundColor="00FF00";
+    if(!matchWon){
+      for(var i=0; i< col; i++){ // cols
+        for (var j = 0; j < row; j++) {
+          win = win + board[j][i];
         }
-        setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+        if(win === seqSymbols){
+          for (var k = 0; k < col; k++) {
+            position = (k*row) + i;
+            document.getElementById(position).style.backgroundColor="00FF00";
+          }
+          setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+        }
+        win = "";
       }
-      win = "";
     }
+
 
     // check first diagona
 
