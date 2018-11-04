@@ -15,6 +15,7 @@ function Game(numRow,numCol) {
     for(var i=0; i<cells.length; i++) {
       board[i%col].fill(" ");
       cells[i].innerHTML = " ";
+      cells[i].style.backgroundColor="";
     }
     numSymbol = 0;
   };
