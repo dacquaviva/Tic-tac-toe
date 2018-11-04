@@ -116,6 +116,24 @@ function Game(numRow,numCol) {
     }
 
     // check second diagonal
+    if(!matchWon){
+      for(var i=0; i< col; i++){ // anti-diag
+        for (var j = 0; j < row; j++) {
+          if((i + j) === (row-1)){
+            win = win + board[i][j];
+          }
+        }
+      }
+      if(win === seqSymbols){
+        for (var k = 0; k < col; k++) {
+          position = (k + k) + (row - 1);
+          document.getElementById(position).style.backgroundColor="00FF00";
+        }
+        setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+        matchWon = true;
+      }
+      win = "";
+    }
 
 
     // check draw
