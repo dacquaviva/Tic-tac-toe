@@ -4,6 +4,8 @@ function Game(numRow,numCol) {
   let col = numCol;
   let symbol;
   let numSymbol = 0;
+  let drawWin; // boolean variable false: Draw, true: Win
+
   this.initializeBoard = function(){
     for(var i=0; i<row; i++) {
       board[i] = new Array(col).fill(" ");
@@ -38,7 +40,6 @@ function Game(numRow,numCol) {
   this.setSymbol = function(position,symbol){
     if(board[Math.floor(position/row)][position%col] === " "){
       board[Math.floor(position/row)][position%col] = symbol;
-
     }else {
       document.getElementById(position).style.backgroundColor="red";
       setTimeout(function(){ document.getElementById(position).style.backgroundColor=""; }, 500);
@@ -56,12 +57,12 @@ function Game(numRow,numCol) {
 
   this.checkWinner = function(){
 
-    win = "";
-    seqSymbols = symbol + symbol + symbol;
-    matchWon = false;
+    let win = "";
+    let seqSymbols = symbol + symbol + symbol;
+    let isMatchFinished = false;
 
     //check rows
-    if(!matchWon){
+    if(!isMatchFinished){
       for(var i=0; i< row; i++){
         for (var j = 0; j < col; j++) {
           win = win + board[i][j];
@@ -72,7 +73,8 @@ function Game(numRow,numCol) {
             document.getElementById(position).style.backgroundColor="green";
           }
           setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
-          matchWon = true;
+          isMatchFinished = true;
+          drawWin = true;
         }
         win = "";
       }
@@ -81,7 +83,7 @@ function Game(numRow,numCol) {
 
 
     //check columns
-    if(!matchWon){
+    if(!isMatchFinished){
       for(var i=0; i< col; i++){
         for (var j = 0; j < row; j++) {
           win = win + board[j][i];
@@ -92,7 +94,8 @@ function Game(numRow,numCol) {
             document.getElementById(position).style.backgroundColor="green";
           }
           setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
-          matchWon = true;
+          isMatchFinished = true;
+          drawWin = true;
         }
         win = "";
       }
@@ -100,7 +103,7 @@ function Game(numRow,numCol) {
 
 
     // check first diagonal
-    if(!matchWon){
+    if(!isMatchFinished){
       for(var i=0; i< row; i++){
         win = win + board[i][i];
       }
@@ -110,13 +113,14 @@ function Game(numRow,numCol) {
           document.getElementById(position).style.backgroundColor="green";
         }
         setTimeout(function(){cleanBoard();alert(symbol + " symbol has won");}, 500);
-        matchWon = true;
+        isMatchFinished = true;
+        drawWin = true;
       }
       win = "";
     }
 
     // check second diagonal
-    if(!matchWon){
+    if(!isMatchFinished){
       for(var i=0; i< col; i++){ // anti-diag
         for (var j = 0; j < row; j++) {
           if((i + j) === (row-1)){
@@ -130,16 +134,31 @@ function Game(numRow,numCol) {
           document.getElementById(position).style.backgroundColor="green";
         }
         setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
-        matchWon = true;
+        isMatchFinished = true;
+        drawWin = true;
       }
       win = "";
     }
 
 
     // check draw
-    if(numSymbol === row*col  && !matchWon){
+    if(numSymbol === row*col  && !isMatchFinished){
       setTimeout(function(){cleanBoard(); alert("it was a draw");}, 500);
+      isMatchFinished = true;
+      drawWin = false;
     }
+
+    return isMatchFinished;
+  };
+
+  this.saveGameDB = function(dbRef){
+    let data;
+    if(drawWin){
+      data = [board,"winner " + symbol];
+    }else{
+      data = [board,"draw"];
+    }
+    dbRef.push(data);
   };
 
 }
@@ -148,14 +167,20 @@ function Game(numRow,numCol) {
 const  COL = 3;
 const  ROW = 3;
 const game = new Game(ROW,COL);
+
 let symbol = " ";
+let isMatchFinished = false;
+
 game.initializeBoard();
 function play(position){
   symbol = game.getSymbol();
   try{
     game.setSymbol(position,symbol);
     game.drawTable();
-    game.checkWinner();
+    isMatchFinished = game.checkWinner();
+    if(isMatchFinished){
+      game.saveGameDB(dbRef);
+    }
   }catch(err){
     alert(err);
   }

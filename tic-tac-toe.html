@@ -5,6 +5,21 @@
   <title>TIC TAC TOE</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="scripts/game.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAkb_MQGnMjaUJ1hXf8XV4LGm6BIW4AQsk",
+    authDomain: "tic-tac-toe-db7ed.firebaseapp.com",
+    databaseURL: "https://tic-tac-toe-db7ed.firebaseio.com",
+    projectId: "tic-tac-toe-db7ed",
+    storageBucket: "tic-tac-toe-db7ed.appspot.com",
+    messagingSenderId: "774626322162"
+  };
+  firebase.initializeApp(config);
+  let dbRef = firebase.database().ref("game");
+</script>
 </head>
 <body>
   <div>
