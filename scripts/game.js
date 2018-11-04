@@ -72,6 +72,7 @@ function Game(numRow,numCol) {
             document.getElementById(position).style.backgroundColor="00FF00";
           }
           setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+          matchWon = true;
         }
         win = "";
       }
@@ -81,7 +82,7 @@ function Game(numRow,numCol) {
 
     //check columns
     if(!matchWon){
-      for(var i=0; i< col; i++){ // cols
+      for(var i=0; i< col; i++){
         for (var j = 0; j < row; j++) {
           win = win + board[j][i];
         }
@@ -91,14 +92,28 @@ function Game(numRow,numCol) {
             document.getElementById(position).style.backgroundColor="00FF00";
           }
           setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+          matchWon = true;
         }
         win = "";
       }
     }
 
 
-    // check first diagona
-
+    // check first diagonal
+    if(!matchWon){
+      for(var i=0; i< row; i++){
+        win = win + board[i][i];
+      }
+      if(win === seqSymbols){
+        for (var k = 0; k < col; k++) {
+          position = (k*row) + k;
+          document.getElementById(position).style.backgroundColor="00FF00";
+        }
+        setTimeout(function(){cleanBoard();alert(symbol + " symbol has won");}, 500);
+        matchWon = true;
+      }
+      win = "";
+    }
 
     // check second diagonal
 
