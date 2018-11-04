@@ -76,7 +76,19 @@ function Game(numRow,numCol) {
 
 
     //check columns
-
+    for(var i=0; i< col; i++){ // cols
+      for (var j = 0; j < row; j++) {
+        win = win + board[j][i];
+      }
+      if(win === seqSymbols){
+        for (var k = 0; k < col; k++) {
+          position = (k*row) + i;
+          document.getElementById(position).style.backgroundColor="00FF00";
+        }
+        setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+      }
+      win = "";
+    }
 
     // check first diagona
 
