@@ -6,7 +6,7 @@ For the implementation i used the following languages:
 -CSS : It define few styles proprerty.
 -JavaScript : It contains all the logical part. There is a class named Game which implements all the behavios(methods) of a tic tac toe game.
 
-###How does it flow?
+How does it flow?
 
 1)The game starts by initialising the board with the method initializeBoard().
 
