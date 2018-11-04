@@ -42,7 +42,7 @@ function Game(numRow,numCol) {
       board[Math.floor(position/row)][position%col] = symbol;
     }else {
       document.getElementById(position).style.backgroundColor="red";
-      setTimeout(function(){ document.getElementById(position).style.backgroundColor=""; }, 500);
+      setTimeout(function(){ document.getElementById(position).style.backgroundColor=""; }, 200);
       numSymbol--;
       throw new Error('Posizion already used');
     }
@@ -69,10 +69,10 @@ function Game(numRow,numCol) {
         }
         if(win === seqSymbols){
           for (var k = 0; k < col; k++) {
-            position = (i*row) + k
+            position = (i*row) + k;
             document.getElementById(position).style.backgroundColor="green";
           }
-          setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+          setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");},10);
           isMatchFinished = true;
           drawWin = true;
         }
@@ -93,7 +93,7 @@ function Game(numRow,numCol) {
             position = (k*row) + i;
             document.getElementById(position).style.backgroundColor="green";
           }
-          setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+          setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");},10);
           isMatchFinished = true;
           drawWin = true;
         }
@@ -112,7 +112,7 @@ function Game(numRow,numCol) {
           position = (k*row) + k;
           document.getElementById(position).style.backgroundColor="green";
         }
-        setTimeout(function(){cleanBoard();alert(symbol + " symbol has won");}, 500);
+        setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");},10);
         isMatchFinished = true;
         drawWin = true;
       }
@@ -133,7 +133,7 @@ function Game(numRow,numCol) {
           position = (k + k) + (row - 1);
           document.getElementById(position).style.backgroundColor="green";
         }
-        setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");}, 500);
+        setTimeout(function(){cleanBoard(); alert(symbol + " symbol has won");},10);
         isMatchFinished = true;
         drawWin = true;
       }
@@ -143,7 +143,7 @@ function Game(numRow,numCol) {
 
     // check draw
     if(numSymbol === row*col  && !isMatchFinished){
-      setTimeout(function(){cleanBoard(); alert("it was a draw");}, 500);
+      setTimeout(function(){cleanBoard(); alert("draw");},1);
       isMatchFinished = true;
       drawWin = false;
     }
