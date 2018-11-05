@@ -22,7 +22,7 @@ id clicked.
 5)If the game is finished, it will be saved in the database, otherwise it will continue from point 1.
 
 
-For the storage I used the firebase database saving each game with the following structure:
+For the storage I used the noSQL firebase database saving each game with the following structure:
 
 - ID(provided by the firebase db)
 
