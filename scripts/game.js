@@ -154,7 +154,7 @@ function Game(numRow,numCol) {
   this.saveGameDB = function(dbRef){
     let data;
     if(drawWin){
-      data = [board,"winner " + symbol];
+      data = [board,symbol];
     }else{
       data = [board,"draw"];
     }
